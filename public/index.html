@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport adapté au mobile-first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linkafri — Un seul lien pour tous tes réseaux</title>
+  <meta name="description" content="Linkafri est la solution link-in-bio pensée pour les créateurs et entrepreneurs d'Afrique francophone. Un seul lien pour tous tes réseaux sociaux.">
+
+  <!-- Meta PWA -->
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Feuille de style principale -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER : logo + bouton de connexion
+       ============================================================ -->
+  <header class="landing-entete conteneur">
+    <span class="landing-logo">Linkafri</span>
+    <button type="button" class="bouton bouton-secondaire" id="btn-connexion-header">
+      Se connecter
+    </button>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO : accroche principale + CTA de création de compte
+         ============================================================ -->
+    <section class="landing-hero conteneur">
+      <h1 class="landing-hero__titre">
+        Un seul lien pour tous tes réseaux sociaux
+      </h1>
+      <p class="landing-hero__texte">
+        Linkafri regroupe tous tes réseaux, ta boutique et tes contacts sur une seule page,
+        pensée pour les créateurs et entrepreneurs d'Afrique francophone.
+      </p>
+      <div class="landing-hero__actions">
+        <button type="button" class="bouton bouton-accent" id="btn-google-login">
+          Créer mon lien gratuitement
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMMENT ÇA MARCHE : 3 étapes
+         ============================================================ -->
+    <section class="landing-fonctionnalites conteneur" aria-labelledby="titre-comment-ca-marche">
+      <h2 id="titre-comment-ca-marche" class="visually-hidden">Comment ça marche</h2>
+
+      <article class="carte-fonctionnalite">
+        <div class="carte-fonctionnalite__numero" aria-hidden="true">1</div>
+        <h3>Connecte-toi avec Google</h3>
+        <p>Crée ton compte Linkafri en quelques secondes, sans mot de passe à retenir.</p>
+      </article>
+
+      <article class="carte-fonctionnalite">
+        <div class="carte-fonctionnalite__numero" aria-hidden="true">2</div>
+        <h3>Ajoute tes liens</h3>
+        <p>Réseaux sociaux, WhatsApp, boutique en ligne : ajoute tout ce que tu veux partager.</p>
+      </article>
+
+      <article class="carte-fonctionnalite">
+        <div class="carte-fonctionnalite__numero" aria-hidden="true">3</div>
+        <h3>Partage ton lien et ton QR code</h3>
+        <p>Mets ton lien Linkafri sur tes réseaux, ou partage ton QR code partout où tu es.</p>
+      </article>
+    </section>
+
+    <!-- ============================================================
+         RÉSEAUX SUPPORTÉS
+         ============================================================ -->
+    <section class="section-reseaux conteneur" aria-labelledby="titre-reseaux">
+      <h2 id="titre-reseaux">Compatible avec tous tes réseaux</h2>
+
+      <ul class="liste-logos-reseaux">
+        <li>
+          <img src="/assets/logos/youtube.svg" alt="YouTube" width="32" height="32">
+        </li>
+        <li>
+          <img src="/assets/logos/x.svg" alt="X (anciennement Twitter)" width="32" height="32">
+        </li>
+        <li>
+          <img src="/assets/logos/facebook.svg" alt="Facebook" width="32" height="32">
+        </li>
+        <li>
+          <img src="/assets/logos/instagram.svg" alt="Instagram" width="32" height="32">
+        </li>
+        <li>
+          <img src="/assets/logos/tiktok.svg" alt="TikTok" width="32" height="32">
+        </li>
+        <li>
+          <img src="/assets/logos/whatsapp.svg" alt="WhatsApp" width="32" height="32">
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         TARIFS
+         ============================================================ -->
+    <section class="section-tarifs conteneur" aria-labelledby="titre-tarifs">
+      <h2 id="titre-tarifs">Tarifs</h2>
+
+      <div class="carte-tarif">
+        <p class="carte-tarif__prix">X FCFA <span>/ mois</span></p>
+        <p class="carte-tarif__mention">Paiement sécurisé</p>
+        <button type="button" class="bouton bouton-accent" id="btn-commencer-tarif">
+          Commencer
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PAYS DISPONIBLES
+         ============================================================ -->
+    <section class="section-pays conteneur" aria-labelledby="titre-pays">
+      <h2 id="titre-pays">Disponible dans 10 pays</h2>
+
+      <ul class="liste-pays">
+        <li>
+          <span aria-hidden="true">🇧🇯</span>
+          <span>Bénin</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇨🇮</span>
+          <span>Côte d'Ivoire</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇨🇲</span>
+          <span>Cameroun</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇸🇳</span>
+          <span>Sénégal</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇹🇬</span>
+          <span>Togo</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇧🇫</span>
+          <span>Burkina Faso</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇲🇱</span>
+          <span>Mali</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇬🇦</span>
+          <span>Gabon</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇨🇬</span>
+          <span>Congo</span>
+        </li>
+        <li>
+          <span aria-hidden="true">🇨🇩</span>
+          <span>RDC</span>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER : copyright + liens légaux
+       ============================================================ -->
+  <footer class="landing-pied conteneur">
+    <p>&copy; 2026 Linkafri. Tous droits réservés.</p>
+    <nav aria-label="Liens légaux">
+      <a href="#">Mentions légales</a>
+      <a href="#">Contact</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
