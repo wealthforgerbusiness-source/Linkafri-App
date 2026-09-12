@@ -1,0 +1,30 @@
+{
+  "name": "linkafri-app",
+  "version": "1.0.0",
+  "description": "Backend Express servant une PWA LinkAfri avec Firebase Admin SDK (Firestore + Auth Google)",
+  "main": "server.js",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "express",
+    "firebase",
+    "pwa",
+    "linkafri"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "firebase-admin": "^12.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
