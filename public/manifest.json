@@ -1,0 +1,23 @@
+{
+  "name": "Linkafri",
+  "short_name": "Linkafri",
+  "description": "Linkafri est la solution link-in-bio pour les créateurs et entrepreneurs d'Afrique francophone : un seul lien pour partager tous tes réseaux sociaux.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
