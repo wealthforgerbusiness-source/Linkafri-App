@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport adapté au mobile-first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon panel — Linkafri</title>
+
+  <!-- Meta PWA -->
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Feuille de style principale -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="panel-edition">
+
+  <!-- ============================================================
+       HEADER : logo + photo de profil + déconnexion
+       ============================================================ -->
+  <header class="panel-entete">
+    <span class="landing-logo">Linkafri</span>
+
+    <div class="panel-entete__utilisateur">
+      <img
+        id="user-photo"
+        src=""
+        alt="Photo de profil de l'utilisateur"
+        class="panel-entete__photo"
+      >
+      <button type="button" class="bouton bouton-secondaire" id="btn-logout">
+        Déconnexion
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       BANDEAU D'ÉTAT D'ABONNEMENT
+       Rempli dynamiquement en JS : "Abonnement actif jusqu'au ..."
+       ou "Abonnement expiré"
+       ============================================================ -->
+  <div id="subscription-banner" class="subscription-banner" role="status"></div>
+
+  <div class="panel-corps">
+    <div class="panel-colonne-edition">
+
+      <main>
+
+        <!-- ============================================================
+             SECTION : MON LIEN PUBLIC
+             ============================================================ -->
+        <section class="bloc-panel" aria-labelledby="titre-lien-public">
+          <h2 id="titre-lien-public" class="bloc-panel__titre">Mon lien public</h2>
+
+          <div class="champ">
+            <label for="input-slug">Lien personnalisé</label>
+            <div class="champ-slug">
+              <span class="champ-slug__prefixe">linkafri-app.onrender.com/</span>
+              <input
+                type="text"
+                id="input-slug"
+                name="slug"
+                autocomplete="off"
+              >
+            </div>
+          </div>
+
+          <button type="button" class="bouton bouton-accent" id="btn-save-slug">
+            Enregistrer le lien
+          </button>
+
+          <!-- Zone d'affichage du QR code, générée en JS -->
+          <div id="qr-code-container" class="qr-code-container" aria-live="polite"></div>
+
+          <button type="button" class="bouton bouton-secondaire" id="btn-copy-link">
+            Copier le lien
+          </button>
+        </section>
+
+        <!-- ============================================================
+             SECTION : MES LIENS
+             ============================================================ -->
+        <section class="bloc-panel" aria-labelledby="titre-mes-liens">
+          <h2 id="titre-mes-liens" class="bloc-panel__titre">Mes liens</h2>
+
+          <!-- Liste des liens existants, remplie dynamiquement en JS -->
+          <ul id="links-list" class="links-list"></ul>
+
+          <!-- Formulaire d'ajout d'un nouveau lien -->
+          <form class="formulaire-ajout-lien" id="form-add-link">
+            <div class="champ">
+              <label for="input-link-label">Titre du lien</label>
+              <input
+                type="text"
+                id="input-link-label"
+                name="linkLabel"
+                autocomplete="off"
+              >
+            </div>
+
+            <div class="champ">
+              <label for="input-link-url">URL</label>
+              <input
+                type="url"
+                id="input-link-url"
+                name="linkUrl"
+                autocomplete="off"
+              >
+            </div>
+
+            <button type="button" class="bouton bouton-accent" id="btn-add-link">
+              Ajouter
+            </button>
+          </form>
+        </section>
+
+        <!-- ============================================================
+             SECTION : APPARENCE
+             ============================================================ -->
+        <section class="bloc-panel" aria-labelledby="titre-apparence">
+          <h2 id="titre-apparence" class="bloc-panel__titre">Apparence</h2>
+
+          <div class="champ">
+            <label for="select-bg-color">Couleur de fond</label>
+            <select id="select-bg-color" name="bgColor">
+              <option value="#0A0A0A">Noir</option>
+              <option value="#FFFFFF">Blanc</option>
+              <option value="#2563EB">Bleu</option>
+              <option value="#F5B400">Jaune</option>
+              <option value="#DC2626">Rouge</option>
+            </select>
+          </div>
+
+          <div class="champ">
+            <label for="select-text-color">Couleur du texte</label>
+            <select id="select-text-color" name="textColor">
+              <option value="#0A0A0A">Noir</option>
+              <option value="#FFFFFF">Blanc</option>
+              <option value="#2563EB">Bleu</option>
+              <option value="#F5B400">Jaune</option>
+              <option value="#DC2626">Rouge</option>
+            </select>
+          </div>
+
+          <!-- Aperçu en direct du panel public, généré en JS -->
+          <div id="theme-preview" class="theme-preview" aria-live="polite"></div>
+
+          <button type="button" class="bouton bouton-accent" id="btn-save-theme">
+            Enregistrer l'apparence
+          </button>
+        </section>
+
+        <!-- ============================================================
+             SECTION : ABONNEMENT
+             ============================================================ -->
+        <section class="bloc-panel" aria-labelledby="titre-abonnement">
+          <h2 id="titre-abonnement" class="bloc-panel__titre">Abonnement</h2>
+
+          <div class="champ">
+            <label for="input-license-key">Code de licence</label>
+            <input
+              type="text"
+              id="input-license-key"
+              name="licenseKey"
+              placeholder="Entrez votre code de licence Chariow"
+              autocomplete="off"
+            >
+          </div>
+
+          <button type="button" class="bouton bouton-accent" id="btn-activate-license">
+            Valider mon code
+          </button>
+
+          <!-- Message de résultat de l'activation, rempli en JS -->
+          <p id="license-result" class="license-result" role="status"></p>
+
+          <p class="abonnement-lien-externe">
+            <a href="#">Je n'ai pas encore de licence, je veux m'abonner</a>
+          </p>
+        </section>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="landing-pied conteneur">
+    <p>&copy; 2026 Linkafri. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>
