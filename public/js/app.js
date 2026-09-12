@@ -1,7 +1,11 @@
 // ============================================================
 // public/js/app.js — Linkafri
-// Script de la landing page : déclenche la connexion Google
-// et échange l'ID token avec le backend pour ouvrir le panel.
+// Script partagé par index.html, inscription.html et login.html :
+// les trois pages exposent un bouton avec le même id
+// (#btn-google-login), ce script peut donc être inclus tel quel
+// dans chacune d'elles sans aucune modification.
+// Déclenche la connexion Google et échange l'ID token avec le
+// backend pour ouvrir le panel.
 // À charger avec <script type="module" src="/js/app.js"></script>
 // ============================================================
 
