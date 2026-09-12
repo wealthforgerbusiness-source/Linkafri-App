@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport adapté au mobile-first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linkafri</title>
+
+  <!-- Meta PWA -->
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Feuille de style principale -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page-publique">
+
+  <main>
+
+    <!-- ============================================================
+         CONTENEUR PRINCIPAL DU PANEL
+         Vide au départ : la couleur de fond/texte, la photo, le nom
+         et les liens sont injectés dynamiquement en JS à partir des
+         données publiques renvoyées par l'API (GET /api/panels/:slug)
+         ============================================================ -->
+    <div id="panel-container" class="panel-public">
+
+      <img
+        id="public-photo"
+        src=""
+        alt="Photo de profil"
+        class="panel-public__photo"
+      >
+
+      <h1 id="public-title" class="panel-public__nom"></h1>
+
+      <!-- Liste des liens du créateur, remplie dynamiquement en JS -->
+      <ul id="public-links-list" class="liste-liens"></ul>
+
+    </div>
+
+    <!-- ============================================================
+         MESSAGE D'ERREUR : affiché uniquement si le slug n'existe pas
+         Caché par défaut, à afficher en JS en cas de réponse 404
+         ============================================================ -->
+    <p id="panel-not-found" class="panel-not-found" hidden>
+      Ce panel n'existe pas ou plus.
+    </p>
+
+  </main>
+
+  <!-- ============================================================
+       INVITATION À CRÉER SON PROPRE PANEL
+       ============================================================ -->
+  <p class="panel-public__invitation">
+    Tu veux aussi créer le tien ?
+    <a href="/">Crée ton lien Linkafri</a>
+  </p>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="panel-public__pied">
+    <p>&copy; 2026 Linkafri. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>
