@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport adapté au mobile-first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription — Linkafri</title>
+  <meta name="description" content="Crée ton panel Linkafri en 10 secondes et partage tous tes réseaux avec un seul lien.">
+
+  <!-- Meta PWA -->
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Feuille de style principale -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page-connexion">
+
+  <!-- ============================================================
+       HEADER : logo + lien vers la connexion
+       ============================================================ -->
+  <header class="landing-entete conteneur">
+    <span class="landing-logo">Linkafri</span>
+    <a href="/login.html" class="bouton bouton-secondaire">
+      Déjà un compte ? Se connecter
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         BLOC CENTRAL : accroche + bouton d'inscription Google
+         ============================================================ -->
+    <div class="carte-connexion">
+      <h1 class="carte-connexion__titre">Crée ton panel Linkafri en 10 secondes</h1>
+      <p class="carte-connexion__texte">
+        Un seul lien pour partager tous tes réseaux, ta boutique et tes contacts.
+      </p>
+
+      <button type="button" class="bouton bouton-accent bouton-google" id="btn-google-login">
+        S'inscrire avec Google
+      </button>
+
+      <!-- ============================================================
+           RAPPEL DES 3 ÉTAPES
+           ============================================================ -->
+      <ol class="rappel-etapes">
+        <li>Connecte-toi</li>
+        <li>Ajoute tes liens</li>
+        <li>Partage</li>
+      </ol>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="landing-pied conteneur">
+    <p>&copy; 2026 Linkafri. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>
