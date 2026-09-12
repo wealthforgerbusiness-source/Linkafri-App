@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport adapté au mobile-first -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion — Linkafri</title>
+  <meta name="description" content="Connecte-toi à ton panel Linkafri pour gérer tes liens.">
+
+  <!-- Meta PWA -->
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Feuille de style principale -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page-connexion">
+
+  <!-- ============================================================
+       HEADER : logo + lien vers l'inscription
+       ============================================================ -->
+  <header class="landing-entete conteneur">
+    <span class="landing-logo">Linkafri</span>
+    <a href="/inscription.html" class="bouton bouton-secondaire">
+      Pas encore de compte ? S'inscrire
+    </a>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         BLOC CENTRAL : accroche + bouton de connexion Google
+         ============================================================ -->
+    <div class="carte-connexion">
+      <h1 class="carte-connexion__titre">Connecte-toi à ton panel Linkafri</h1>
+      <p class="carte-connexion__texte">
+        Retrouve tes liens, ton thème et ton QR code en un clic.
+      </p>
+
+      <button type="button" class="bouton bouton-accent bouton-google" id="btn-google-login">
+        Se connecter avec Google
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="landing-pied conteneur">
+    <p>&copy; 2026 Linkafri. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>
