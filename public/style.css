@@ -1,0 +1,680 @@
+/* ============================================================
+   style.css — Linkafri
+   PWA SaaS de link-in-bio pour l'Afrique francophone
+   Mobile-first, accessible (WCAG AA), sans dégradés génériques
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. VARIABLES CSS (design tokens)
+   ------------------------------------------------------------ */
+:root {
+  /* Couleurs de base */
+  --couleur-noir: #0A0A0A;
+  --couleur-blanc: #FFFFFF;
+
+  /* Couleurs neutres intermédiaires (fonds, bordures, texte secondaire) */
+  --gris-950: #121212;
+  --gris-800: #2A2A2A;
+  --gris-600: #5C5C5C;
+  --gris-400: #8A8A8A;
+  --gris-200: #E4E4E4;
+  --gris-100: #F2F2F2;
+
+  /* Couleurs d'accent sélectionnables par l'utilisateur pour son panel public */
+  --accent-bleu: #2563EB;
+  --accent-bleu-fonce: #1D4ED8;
+  --accent-jaune: #F5B400;
+  --accent-jaune-fonce: #B58200;
+  --accent-rouge: #DC2626;
+  --accent-rouge-fonce: #B91C1C;
+
+  /* Couleur d'accent active du thème (par défaut : bleu).
+     Le sélecteur de thème du panel change uniquement ces deux variables. */
+  --accent: var(--accent-bleu);
+  --accent-fonce: var(--accent-bleu-fonce);
+
+  /* Texte */
+  --texte-principal: var(--couleur-noir);
+  --texte-inverse: var(--couleur-blanc);
+  --texte-secondaire: var(--gris-600);
+
+  /* Typographie */
+  --police-principale: 'Inter', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Échelle de tailles responsives */
+  --taille-h1: clamp(1.75rem, 4vw + 1rem, 3rem);
+  --taille-h2: clamp(1.375rem, 2.5vw + 0.8rem, 2rem);
+  --taille-h3: clamp(1.125rem, 1.5vw + 0.7rem, 1.375rem);
+  --taille-texte: clamp(0.95rem, 0.5vw + 0.85rem, 1.05rem);
+  --taille-petit: 0.85rem;
+
+  /* Espacements de base (échelle 4px) */
+  --espace-1: 4px;
+  --espace-2: 8px;
+  --espace-3: 12px;
+  --espace-4: 16px;
+  --espace-5: 24px;
+  --espace-6: 32px;
+  --espace-7: 48px;
+  --espace-8: 64px;
+
+  /* Rayons de bordure */
+  --rayon-sm: 8px;
+  --rayon-md: 12px;
+  --rayon-lg: 20px;
+  --rayon-pill: 999px;
+
+  /* Ombres légères (jamais dures) */
+  --ombre-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --ombre-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --ombre-focus: 0 0 0 3px rgba(37, 99, 235, 0.35);
+
+  /* Durée des transitions */
+  --duree-transition: 200ms;
+
+  /* Zone tactile minimale */
+  --taille-tactile-min: 44px;
+}
+
+/* Variantes de thème d'accent, appliquées via une classe sur le conteneur du panel public
+   (ex: <body class="theme-jaune">). Le contraste texte/fond reste vérifié pour chaque cas. */
+.theme-bleu {
+  --accent: var(--accent-bleu);
+  --accent-fonce: var(--accent-bleu-fonce);
+}
+.theme-jaune {
+  --accent: var(--accent-jaune);
+  --accent-fonce: var(--accent-jaune-fonce);
+}
+.theme-rouge {
+  --accent: var(--accent-rouge);
+  --accent-fonce: var(--accent-rouge-fonce);
+}
+
+/* ------------------------------------------------------------
+   2. RÉINITIALISATION & BASE
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--police-principale);
+  font-size: var(--taille-texte);
+  line-height: 1.55;
+  color: var(--texte-principal);
+  background-color: var(--couleur-blanc);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--taille-h1); }
+h2 { font-size: var(--taille-h2); }
+h3 { font-size: var(--taille-h3); }
+
+p {
+  margin: 0;
+  color: var(--texte-secondaire);
+}
+
+/* Curseur pointer explicite sur tout élément interactif */
+a[role="button"],
+button,
+.bouton,
+.lien-bouton,
+[data-cliquable="true"] {
+  cursor: pointer;
+}
+
+/* États de focus visibles pour la navigation clavier (jamais supprimés) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: var(--ombre-focus);
+}
+
+/* Respect de la préférence de réduction des animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   3. CONTENEURS & UTILITAIRES
+   ------------------------------------------------------------ */
+.conteneur {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--espace-4);
+}
+
+.conteneur-etroit {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+  padding-inline: var(--espace-4);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Composant bouton de base, réutilisé sur toutes les pages */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-2);
+  min-height: var(--taille-tactile-min);
+  padding: var(--espace-3) var(--espace-5);
+  border: none;
+  border-radius: var(--rayon-md);
+  font-size: var(--taille-texte);
+  font-weight: 600;
+  transition: transform var(--duree-transition) ease, opacity var(--duree-transition) ease;
+}
+
+.bouton:active {
+  transform: scale(0.98);
+}
+
+.bouton-primaire {
+  background-color: var(--couleur-noir);
+  color: var(--couleur-blanc);
+}
+
+.bouton-primaire:hover {
+  opacity: 0.88;
+}
+
+.bouton-accent {
+  background-color: var(--accent);
+  color: var(--couleur-blanc);
+}
+
+.bouton-accent:hover {
+  background-color: var(--accent-fonce);
+}
+
+.bouton-secondaire {
+  background-color: var(--couleur-blanc);
+  color: var(--couleur-noir);
+  border: 1px solid var(--gris-200);
+}
+
+.bouton-secondaire:hover {
+  background-color: var(--gris-100);
+}
+
+/* ------------------------------------------------------------
+   4. PAGE D'ACCUEIL (LANDING)
+   ------------------------------------------------------------ */
+.landing-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--espace-4);
+}
+
+.landing-logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.landing-hero {
+  padding-block: var(--espace-7) var(--espace-6);
+  text-align: center;
+}
+
+.landing-hero__titre {
+  max-width: 20ch;
+  margin-inline: auto;
+}
+
+.landing-hero__texte {
+  max-width: 46ch;
+  margin: var(--espace-4) auto 0;
+}
+
+.landing-hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-3);
+  margin-top: var(--espace-6);
+}
+
+/* À partir de la tablette, les actions du hero passent en ligne */
+@media (min-width: 640px) {
+  .landing-hero__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.landing-fonctionnalites {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espace-5);
+  padding-block: var(--espace-7);
+}
+
+@media (min-width: 768px) {
+  .landing-fonctionnalites {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.carte-fonctionnalite {
+  padding: var(--espace-5);
+  border: 1px solid var(--gris-200);
+  border-radius: var(--rayon-lg);
+}
+
+.carte-fonctionnalite h3 {
+  margin-bottom: var(--espace-2);
+}
+
+/* ------------------------------------------------------------
+   5. PAGE DE CONNEXION GOOGLE
+   ------------------------------------------------------------ */
+.page-connexion {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espace-5);
+  background-color: var(--gris-100);
+}
+
+.carte-connexion {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--couleur-blanc);
+  border-radius: var(--rayon-lg);
+  box-shadow: var(--ombre-md);
+  padding: var(--espace-6) var(--espace-5);
+  text-align: center;
+}
+
+.carte-connexion__titre {
+  margin-bottom: var(--espace-2);
+}
+
+.carte-connexion__texte {
+  margin-bottom: var(--espace-6);
+}
+
+/* Bouton de connexion Google : icône SVG à gauche, jamais d'emoji */
+.bouton-google {
+  width: 100%;
+  background-color: var(--couleur-blanc);
+  color: var(--texte-principal);
+  border: 1px solid var(--gris-200);
+}
+
+.bouton-google:hover {
+  background-color: var(--gris-100);
+}
+
+.bouton-google__icone {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.carte-connexion__mention-legale {
+  margin-top: var(--espace-5);
+  font-size: var(--taille-petit);
+}
+
+.carte-connexion__mention-legale a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ------------------------------------------------------------
+   6. PANEL D'ÉDITION UTILISATEUR (tableau de bord)
+   ------------------------------------------------------------ */
+.panel-edition {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--gris-100);
+}
+
+.panel-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espace-4);
+  background-color: var(--couleur-blanc);
+  border-bottom: 1px solid var(--gris-200);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.panel-corps {
+  flex: 1;
+  padding: var(--espace-5) var(--espace-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-5);
+}
+
+/* À partir du desktop, le panel se divise en deux colonnes :
+   édition à gauche, aperçu du panel public à droite */
+@media (min-width: 1024px) {
+  .panel-corps {
+    flex-direction: row;
+    max-width: 1120px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .panel-colonne-edition {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .panel-colonne-apercu {
+    width: 380px;
+    flex-shrink: 0;
+  }
+}
+
+.bloc-panel {
+  background-color: var(--couleur-blanc);
+  border: 1px solid var(--gris-200);
+  border-radius: var(--rayon-lg);
+  padding: var(--espace-5);
+}
+
+.bloc-panel__titre {
+  margin-bottom: var(--espace-4);
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-2);
+  margin-bottom: var(--espace-4);
+}
+
+.champ:last-child {
+  margin-bottom: 0;
+}
+
+.champ label {
+  font-size: var(--taille-petit);
+  font-weight: 600;
+}
+
+.champ input,
+.champ textarea {
+  min-height: var(--taille-tactile-min);
+  padding: var(--espace-3);
+  border: 1px solid var(--gris-200);
+  border-radius: var(--rayon-sm);
+  font-size: var(--taille-texte);
+  color: var(--texte-principal);
+  background-color: var(--couleur-blanc);
+}
+
+.champ input:focus,
+.champ textarea:focus {
+  outline: none;
+}
+
+/* Sélecteur de couleur d'accent du thème public */
+.selecteur-theme {
+  display: flex;
+  gap: var(--espace-3);
+}
+
+.pastille-theme {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: transform var(--duree-transition) ease, border-color var(--duree-transition) ease;
+}
+
+.pastille-theme:hover {
+  transform: scale(1.08);
+}
+
+.pastille-theme[aria-pressed="true"] {
+  border-color: var(--couleur-noir);
+}
+
+.pastille-theme--bleu { background-color: var(--accent-bleu); }
+.pastille-theme--jaune { background-color: var(--accent-jaune); }
+.pastille-theme--rouge { background-color: var(--accent-rouge); }
+
+/* Ligne de lien éditable dans la liste des liens */
+.ligne-lien {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-3);
+  padding: var(--espace-3);
+  border: 1px solid var(--gris-200);
+  border-radius: var(--rayon-md);
+  margin-bottom: var(--espace-3);
+}
+
+.ligne-lien:last-child {
+  margin-bottom: 0;
+}
+
+.ligne-lien__icone {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--texte-principal);
+}
+
+.ligne-lien__contenu {
+  flex: 1;
+  min-width: 0;
+}
+
+.ligne-lien__titre {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ligne-lien__url {
+  font-size: var(--taille-petit);
+  color: var(--texte-secondaire);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Le titre tronqué reste toujours accessible en entier via l'attribut title
+   du markup HTML (solution d'accès à la valeur complète, ex: title="...") */
+
+.ligne-lien__actions {
+  display: flex;
+  gap: var(--espace-2);
+  flex-shrink: 0;
+}
+
+/* Badge de statut : jamais uniquement porté par la couleur (icône + texte) */
+.badge-statut {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espace-1);
+  padding: var(--espace-1) var(--espace-2);
+  border-radius: var(--rayon-pill);
+  font-size: var(--taille-petit);
+  font-weight: 600;
+}
+
+.badge-statut--actif {
+  background-color: #E6F4EA;
+  color: #1E7B34;
+}
+
+.badge-statut--inactif {
+  background-color: var(--gris-100);
+  color: var(--texte-secondaire);
+}
+
+/* ------------------------------------------------------------
+   7. PAGE PUBLIQUE — PANEL LINK-IN-BIO
+   ------------------------------------------------------------ */
+.page-publique {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: var(--gris-950);
+  padding: var(--espace-6) var(--espace-4) var(--espace-8);
+}
+
+.panel-public {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.panel-public__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--couleur-blanc);
+  box-shadow: var(--ombre-md);
+}
+
+.panel-public__nom {
+  margin-top: var(--espace-4);
+  color: var(--couleur-blanc);
+}
+
+.panel-public__bio {
+  margin-top: var(--espace-2);
+  color: var(--gris-400);
+  max-width: 34ch;
+}
+
+/* Liste de liens : boutons pleine largeur empilés verticalement */
+.liste-liens {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espace-3);
+  margin-top: var(--espace-6);
+}
+
+.lien-bouton {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-3);
+  width: 100%;
+  min-height: 52px;
+  padding: var(--espace-3) var(--espace-5);
+  background-color: var(--couleur-blanc);
+  color: var(--texte-principal);
+  border-radius: var(--rayon-md);
+  box-shadow: var(--ombre-sm);
+  transition: transform var(--duree-transition) ease, box-shadow var(--duree-transition) ease;
+}
+
+/* Effet tap/hover subtil : légère élévation, jamais d'animation agressive */
+.lien-bouton:hover,
+.lien-bouton:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--ombre-md);
+}
+
+.lien-bouton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.lien-bouton__icone {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.lien-bouton__texte {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Variante d'accent : bordure gauche de la couleur de thème choisie par le créateur */
+.lien-bouton--accent {
+  border-left: 4px solid var(--accent);
+}
+
+.panel-public__pied {
+  margin-top: var(--espace-7);
+  color: var(--gris-400);
+  font-size: var(--taille-petit);
+}
+
+.panel-public__pied a {
+  color: var(--couleur-blanc);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   8. POINTS DE RUPTURE DE RÉFÉRENCE
+   375px  -> styles de base (mobile-first)
+   768px  -> tablette (grilles à 2-3 colonnes)
+   1024px -> desktop (panel d'édition en 2 colonnes)
+   1440px -> grand écran (conteneur plafonné à 1120px)
+   ------------------------------------------------------------ */
